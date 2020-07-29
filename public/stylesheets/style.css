@@ -1,0 +1,80 @@
+/* Color palette from: https://www.color-hex.com/color-palette/95700 */
+body 
+{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #a18f92;
+}
+
+a 
+{
+  color: #5f6174;
+}
+
+.button-link
+{
+  background-color: #fff3d5;
+  padding: 5px;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.inline-button
+{
+  width: 33%;
+  display: inline-block;
+}
+
+.center-column
+{
+  background-color: #d3f2bf;
+  width: 80%;
+  margin: 20px auto 0 auto;
+  text-align: center;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.code-wrapper
+{
+  text-align: left;
+  border-top: 2px #5f6174 solid;
+  border-bottom: 2px #5f6174 solid;
+}
+
+.file-select
+{
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.nav-pills .nav-link.active, .btn
+{
+  color: #5f6174;
+  background-color: #f2b7b7;
+}
+
+/* Style the file input: https://benmarshall.me/styling-file-inputs/ */
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+  background-color: #f2b7b7;
+  border-radius: 5px;
+  color: #5f6174;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+}
+ 
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    background-color: #c97e7e;
+}

@@ -1,0 +1,15 @@
+extends viewer
+
+block additionalScripts
+    script(type="text/javascript" src="/javascripts/fhir-viewer.js")
+
+block input
+    h1 FHIR Search
+    p Takes a search string for the FHIR server.
+    p Format is: (resource name)/(resource id)/(compartment resource)?(query parameters...)
+    p All parts are optional.
+
+    form(enctype="multipart/form-data", method="post", name="fhir-search", class="form-inline d-inline")
+        input(type="text", name="search-url", id="search-url", class="form-control mr-2 w-50")
+        input(type="submit", id="fhir-search-trigger", value="Search", class="btn")
+    hr

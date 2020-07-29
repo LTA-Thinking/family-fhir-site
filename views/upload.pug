@@ -1,0 +1,15 @@
+extends viewer
+
+block additionalScripts
+    script(type="text/javascript", src="/javascripts/file-upload.js")
+
+block input
+    h1 FHIR Upload
+    form(enctype="multipart/form-data", method="post", name="fhir-file-info", class="file-select")
+        input(type="file", name="fhir-file", id="fhir-file")
+        label(for="fhir-file") Select FHIR File
+    form(enctype="multipart/form-data", method="post", name="ccd-file-info", class="file-select")
+        input(type="file", name="ccd-file", id="ccd-file", onChange="CcdFileSelect(event)")
+        label(for="ccd-file", id="ccd-file-label") Select CCD File
+    hr
+    input(type="button", name="server-post", id="server-post", class="btn", value="Post to Server")

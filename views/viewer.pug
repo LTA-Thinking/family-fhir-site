@@ -1,0 +1,18 @@
+extends layout
+
+block scripts
+    script(type="text/javascript" src="/codemirror/lib/codemirror.js")
+    script(type="text/javascript" src="/codemirror/addon/mode/simple.js")
+    script(type="text/javascript" src="/codemirror/addon/fold/foldcode.js")
+    script(type="text/javascript" src="/codemirror/addon/fold/foldgutter.js")
+    link(rel="stylesheet" type="text/css" href="/codemirror/lib/codemirror.css")
+    link(rel="stylesheet" type="text/css" href="/codemirror/addon/fold/foldgutter.css")
+    script(type="text/javascript" src="/codemirror/mode/javascript/javascript.js")
+    block additionalScripts
+
+block content
+    div(class="float-right button-link")
+        a(href="/", class="font-weight-bold") Home
+    block input
+    div(id="tabs")
+    div(id="resource")
