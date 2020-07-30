@@ -39,6 +39,17 @@ function GetFhirConverter() {
     return $("#env-settings").attr("data-fhirconverter");
 }
 
+function DisplayFhir(fhirBundle) {
+    $("#tabs").empty();
+    $("#resource").empty();
+
+    var fhirResources = SeparateResources(fhirBundle);
+    AddTabs("tabs", fhirResources);
+    for (const resourceType in fhirResources) {
+        AddSummary("resource", resourceType, fhirResources[resourceType], true);
+    }
+}
+
 function SeparateResources(fhirResource) {
     if (fhirResource.resourceType !== "Bundle") {
         return { [fhirResource.resourceType]: [fhirResource] };

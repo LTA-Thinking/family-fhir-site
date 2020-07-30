@@ -1,19 +1,20 @@
 function SearchFhirServer() {
-    $("#tabs").empty();
-    $("resource").empty();
 
     var searchString = $("#search-url").val();
     CallFhirServer(
         (bundle) => {
-            var fhirResources = SeparateResources(bundle);
-            AddTabs("tabs", fhirResources);
-            for (const resourceType in fhirResources) {
-                AddSummary("resource", resourceType, fhirResources[resourceType], true);
-            }
+            DisplayFhir(bundle);
         },
         (err) => {
             console.log(err);
         }, searchString);
+}
+
+function GenerateQrCode() {
+    var qr = qrcode(0, 'M');
+    qr.addData(location);
+    qr.make();
+    document.getElementById('qr-code').innerHTML = qr.createImgTag();
 }
 
 $(document).ready(function () {
@@ -28,6 +29,7 @@ $(document).ready(function () {
     if (urlParams.has('_query')) {
         const searchString = atob(urlParams.get('_query'));
         $("#search-url").val(searchString);
+        GenerateQrCode();
         SearchFhirServer();
     }
 });

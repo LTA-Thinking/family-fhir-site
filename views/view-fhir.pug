@@ -2,12 +2,15 @@ extends viewer
 
 block additionalScripts
     script(type="text/javascript" src="/javascripts/fhir-viewer.js")
+    script(type="text/javascript" src="/qrcode/qrcode.js")
 
 block input
+    div(id="qr-code", class="float-left")
     h1 FHIR Search
     p Takes a search string for the FHIR server.
     p Format is: (resource name)/(resource id)/(compartment resource)?(query parameters...)
     p All parts are optional.
+    p The URL and QR code generated after a search can be saved for quick reference to this search
 
     form(enctype="multipart/form-data", method="post", name="fhir-search", class="form-inline d-inline")
         input(type="text", name="search-url", id="search-url", class="form-control mr-2 w-50")

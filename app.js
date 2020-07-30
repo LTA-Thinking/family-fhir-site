@@ -21,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/codemirror', express.static(path.join(__dirname, 'node_modules/codemirror/')));
+app.use('/qrcode', express.static(path.join(__dirname, 'node_modules/qrcode-generator/')));
 
 app.use('/', indexRouter);
 app.use('/upload', uploadRouter);
