@@ -58,6 +58,9 @@ function PostResources(resources, index) {
         error:
             (err) => {
                 console.log(err);
+                if (resources.length > index) {
+                    PostResources(resources, index + 1);
+                }
             }
     });
 }

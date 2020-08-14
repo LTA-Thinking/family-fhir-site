@@ -78,11 +78,25 @@ function AddSummary(parentId, resourceType, fhirResources, hidden) {
     var wrapper = $("#" + wrapperId);
     for (let index = 0; index < fhirResources.length; index++) {
         var resource = fhirResources[index];
-        var displayId = parentId + "-" + resourceType + "-" + index + "-display";
+        var baseId = parentId + "-" + resourceType + "-" + index;
+        var displayId = baseId + "-display";
+        var headerId = baseId + "-header";
+        var buttonId = baseId + "-button";
 
         wrapper.append(
-            "<div class=\"code-wrapper\">"
+            "<div class=\"card\">"
+            + "<div class=\"card-header\" id=\"" + headerId + "\">"
+            + "<button class=\"btn btn-link\" id=\"" + buttonId + "\" data-toggle=\"collapse\" data-target=\"#" + baseId + "\" aria-controls=\"" + baseId + "\" onclick=\"RefreshCodemirror(event)\">"
+            + ResourceSummary(resource)
+            + "</button>"
+            + "</div>"
+            + "<div id=\"" + baseId + "\" class=\"collapse\" aria-labelledby=\"" + headerId + "\" data-parent=\"#" + wrapperId + "\">"
+            + "<div class=\"card-body\">"
+            + "<div class=\"code-wrapper\">"
             + "<input type=\"text\" class=\"form-control\" id=\"" + displayId + "\">"
+            + "</div>"
+            + "</div>"
+            + "</div>"
             + "</div>");
 
         var display = CodeMirror.fromTextArea(document.getElementById(displayId), {
@@ -95,6 +109,8 @@ function AddSummary(parentId, resourceType, fhirResources, hidden) {
 
         var outputLines = JSON.stringify(resource, null, 2).replace(/(?:\r\n|\r|\n)/g, '\n').split('\n');
         display.setValue(outputLines.join('\n'));
+
+        $("#" + buttonId).data("CodeMirrorInstance", display);
     }
 
     if (hidden) {
@@ -131,4 +147,14 @@ function SwitchToResource(resourceType) {
 
     var activeTab = $("#" + resourceType + "-tab");
     activeTab.addClass("active-resource-tab active");
+}
+
+// Because the codemirror instance is hidden at the start it needs to be refreshed when the card is opened or it will apear blank until clicked.
+function RefreshCodemirror(event)
+{
+    setTimeout(() => $("#" + event.target.id).data("CodeMirrorInstance").refresh(), 0);
+}
+
+function ResourceSummary(resource) {
+    return resource.id;
 }
